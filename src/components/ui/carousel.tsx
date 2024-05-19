@@ -1,10 +1,15 @@
 "use client"
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
+interface CarouselItemProps {
+  id: string,
+  name: string;
+  location: string;
+  img: string;
+}
 
-
-const CarouselItem = ({ index, position, children }) => {
+const CarouselItem = ({ index, position, children }: { index: number, position: number, children: ReactNode }) => {
   const offset = index + 1;
   const r = position - offset;
   const abs = Math.max(r * -1, r);
@@ -18,7 +23,7 @@ const CarouselItem = ({ index, position, children }) => {
 };
 
 
-const Carousel = ({ items }) => {
+const Carousel = ({ items }: { items: CarouselItemProps[] }) => {
   const [position, setPosition] = useState(1);
   const totalItems = items.length;
 
